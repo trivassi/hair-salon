@@ -1,7 +1,6 @@
 import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.time.LocalDateTime;
 
 public class StylistTest {
 
@@ -25,3 +24,5 @@ public class StylistTest {
     Stylist myStylist = new Stylist("Harry", 34, "harry@gmail.com", "123-456-7890");
     assertEquals(true, myStylist instanceof Stylist);
   }
+
+  

@@ -9,6 +9,7 @@ public class Client {
   private String email;
   private String phone;
   private int id;
+  private int stylistId;
 
 
   public Client(String name, int age, String email, String phone) {
@@ -16,6 +17,7 @@ public class Client {
     this.age = age;
     this.email = email;
     this.phone = phone;
+    this.categoryId = categoryId;
   }
 
   public String getName() {
@@ -36,4 +38,8 @@ public class Client {
 
   public int getId() {
     return id;
+  }
+
+  public int getCategoryId() {
+    return categoryId;
   }
