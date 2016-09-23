@@ -3,21 +3,19 @@ import java.util.ArrayList;
 import java.util.List;
 import org.sql2o.*;
 
-public class Client {
+public class Stylists {
   private String name;
   private int age;
   private String email;
   private String phone;
-  private boolean employed;
   private int id;
 
 
-  public Client(String name, int age, String email, String phone, boolean employed) {
+  public Stylists(String name, int age, String email, String phone) {
     this.name = name;
     this.age = age;
     this.email = email;
     this.phone = phone;
-    employed = false;
   }
 
   public String getName() {
@@ -34,10 +32,6 @@ public class Client {
 
   public String getPhone() {
     return phone;
-  }
-
-  public boolean getEmployed() {
-    return employed;
   }
 
   public int getId() {

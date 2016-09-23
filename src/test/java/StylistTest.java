@@ -3,7 +3,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import java.time.LocalDateTime;
 
-public class ClientTest {
+public class StylistTest {
 
   @Before
   public void setUp() {
@@ -22,6 +22,6 @@ public class ClientTest {
 
   @Test
   public void Task_instantiatesCorrectly_true() {
-    Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534");
-    assertEquals(true, myClient instanceof Client);
+    Stylist myStylist = new Stylist("Harry", 34, "harry@gmail.com", "123-456-7890");
+    assertEquals(true, myStylist instanceof Stylist);
   }
