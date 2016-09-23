@@ -43,3 +43,10 @@ public class Client {
   public int getCategoryId() {
     return categoryId;
   }
+
+  public static List<Task> all() {
+    String sql = "SELECT id, name, email, phone, stylistId FROM clients";
+    try(Connection con = DB.sql2o.open()) {
+     return con.createQuery(sql).executeAndFetch(Task.class);
+    }
+  }
