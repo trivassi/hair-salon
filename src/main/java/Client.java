@@ -49,9 +49,24 @@ public class Client {
     return stylistId;
   }
 
+  public static List<Client> all() {
+  try(Connection con = DB.sql2o.open()) {
+    String sql = "SELECT id, name, age, email, phone, appointment, stylistid FROM clients";
+    return con.createQuery(sql).executeAndFetch(Client.class);
+  }
 }
-  // public static List<Task> all() {
-  //   String sql = "SELECT id, name, email, phone, appointment, stylistId FROM clients";
-  //   try(Connection con = DB.sql2o.open()) {
-  //    return con.createQuery(sql).executeAndFetch(Task.class);
-  // }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO clients (name, age, email, phone, appointment, stylistid) VALUES (:name, :age, :email, :phone, :appointment, :stylistid)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", this.name)
+        .addParameter("age", this.age)
+        .addParameter("preferences", this.preferences)
+        .addParameter("stylistId", this.stylistId)
+        .executeUpdate()
+        .getKey();
+    }
+  }
+
+}

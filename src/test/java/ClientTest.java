@@ -61,4 +61,10 @@ public class ClientTest {
     assertEquals(1, myClient.getStylistId());
   }
 
+  @Test
+  public void getId_returnsId_true() {
+    firstClient.save();
+    assertTrue(firstClient.getId() > 0);
+  }
+
 }
