@@ -25,4 +25,32 @@ public class StylistTest {
     assertEquals(true, myStylist instanceof Stylist);
   }
 
-  
+  @Test
+  public void Stylist_instantiatesWithName_String() {
+    Stylist myStylist = new Stylist("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    Date testDate = Date.valueOf("2016-08-01");
+    assertEquals("Dan", myStylist.getName());
+  }
+
+  @Test
+  public void Stylist_instantiatesWithAge_int() {
+    Stylist myStylist = new Stylist("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    Date testDate = Date.valueOf("2016-08-01");
+    assertEquals(38, myStylist.getAge());
+  }
+
+  @Test
+  public void Stylist_instantiatesWithEmail_String() {
+    Stylist myStylist = new Stylist("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    Date testDate = Date.valueOf("2016-08-01");
+    assertEquals("dan@gmail.com", myStylist.getEmail());
+  }
+
+  @Test
+  public void Stylist_instantiatesWithPhone_String() {
+    Stylist myStylist = new Stylist("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    Date testDate = Date.valueOf("2016-08-01");
+    assertEquals("dan@gmail.com", myStylist.getPhone());
+  }
+
+}
