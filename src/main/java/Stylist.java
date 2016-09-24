@@ -1,9 +1,9 @@
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import org.sql2o.*;
+import java.sql.Date;
 
-public class Stylists {
+public class Stylist {
   private String name;
   private int age;
   private String email;
@@ -11,7 +11,7 @@ public class Stylists {
   private int id;
 
 
-  public Stylists(String name, int age, String email, String phone) {
+  public Stylist(String name, int age, String email, String phone) {
     this.name = name;
     this.age = age;
     this.email = email;
@@ -37,3 +37,4 @@ public class Stylists {
   public int getId() {
     return id;
   }
+}

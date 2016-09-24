@@ -1,6 +1,5 @@
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import org.sql2o.*;
 import java.sql.Date;
 
@@ -13,7 +12,7 @@ public class Client {
   private Date appointment;
   private int stylistId;
 
-  public Client(String name, int age, String email, String phone, Date appointment) {
+  public Client(String name, int age, String email, String phone, Date appointment,int stylistId) {
     this.name = name;
     this.age = age;
     this.email = email;
@@ -50,10 +49,9 @@ public class Client {
     return stylistId;
   }
 
-
-  public static List<Task> all() {
-    String sql = "SELECT id, name, email, phone, appointment, stylistId FROM clients";
-    try(Connection con = DB.sql2o.open()) {
-     return con.createQuery(sql).executeAndFetch(Task.class);
-    }
-  }
+}
+  // public static List<Task> all() {
+  //   String sql = "SELECT id, name, email, phone, appointment, stylistId FROM clients";
+  //   try(Connection con = DB.sql2o.open()) {
+  //    return con.createQuery(sql).executeAndFetch(Task.class);
+  // }
