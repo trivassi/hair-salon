@@ -56,6 +56,21 @@ public class Client {
   }
 }
 
+@Override
+public boolean equals(Object otherClient){
+  if (!(otherClient instanceof Client)) {
+    return false;
+  } else {
+    Client newClient = (Client) otherClient;
+    return this.getName().equals(newClient.getName()) &&
+           this.getAge() == newClient.getAge() &&
+           this.getEmail().equals(newClient.getEmail()) &&
+           this.getPhone().equals(newClient.getPhone()) &&
+           this.getId() == newClient.getId() &&
+           this.getAppointment().equals(newClient.getAppointment()) &&
+           this.getStylistId() == newClient.getStylistId();
+  }
+}
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO clients (name, age, email, phone, appointment, stylistid) VALUES (:name, :age, :email, :phone, :appointment, :stylistid)";

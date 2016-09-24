@@ -62,11 +62,23 @@ public class ClientTest {
   }
 
   @Test
-  public void getId_returnsId_true() {
+  public void all_returnsAllInstancesOfClient_true() {
     Date testDate = Date.valueOf("2016-08-01");
-    Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
-    myClient.save();
-    assertTrue(myClient.getId() > 0);
+    Client firstClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    firstClient.save();
+    Client secondClient = new Client("Joe", 39, "joe@gmail.com", "123-456-6534", testDate, 2);
+    secondClient.save();
+    assertEquals(true, Client.all().get(0).equals(firstClient));
+    assertEquals(true, Client.all().get(1).equals(secondClient));
   }
+
+  // @Test
+  // public void getId_returnsId_true() {
+  //   Date testDate = Date.valueOf("2016-08-01");
+  //   Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+  //   myClient.save();
+  //   assertTrue(myClient.getId() > 0);
+  // }
+
 
 }
