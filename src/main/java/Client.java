@@ -51,7 +51,7 @@ public class Client {
 
   public static List<Client> all() {
   try(Connection con = DB.sql2o.open()) {
-    String sql = "SELECT id, name, age, email, phone, appointment, stylistid FROM clients";
+    String sql = "SELECT * FROM clients";
     return con.createQuery(sql).executeAndFetch(Client.class);
   }
 }
@@ -62,8 +62,10 @@ public class Client {
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .addParameter("age", this.age)
-        .addParameter("preferences", this.preferences)
-        .addParameter("stylistId", this.stylistId)
+        .addParameter("email", this.email)
+        .addParameter("phone", this.phone)
+        .addParameter("appointment", this.appointment)
+        .addParameter("stylistid", this.stylistId)
         .executeUpdate()
         .getKey();
     }

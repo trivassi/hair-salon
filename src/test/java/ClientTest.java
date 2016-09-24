@@ -63,8 +63,10 @@ public class ClientTest {
 
   @Test
   public void getId_returnsId_true() {
-    firstClient.save();
-    assertTrue(firstClient.getId() > 0);
+    Date testDate = Date.valueOf("2016-08-01");
+    Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    myClient.save();
+    assertTrue(myClient.getId() > 0);
   }
 
 }
