@@ -1,0 +1,19 @@
+<h1>Edit/Delete Stylist: $stylist.getName()</h1>
+
+<div class="form-group">
+  <form action="/stylist/$stylist.getId()/edited" method="post">
+    <label for="name">Name: </label>
+    <input type="text" name="name" class="form-control" value="$stylist.getName()">
+    <label for="age">Age:</label>
+    <input type="number" name="age"  class="form-control" value="$stylist.getAge()">
+    <label for="name">Email:</label>
+    <input type="text" name="email"  class="form-control" value="$stylist.getEmail()">
+    <label for="name">Phone:</label>
+    <input type="text" name="phone"  class="form-control" value="$stylist.getPhone()">
+    <button type="submit" class="btn btn-success">Update</button>
+  </form>
+
+  <form action="/stylist/$stylist.getId()/deleted" method="post">
+    <button type="submit" class="btn btn-danger">Delete Stylist</button>
+  </form>
+</div>
