@@ -111,7 +111,7 @@ public class Client {
   try(Connection con = DB.sql2o.open()) {
   String sql = "UPDATE clients SET age = :age WHERE id = :id";
   con.createQuery(sql)
-    .addParameter("age", name)
+    .addParameter("age", age)
     .addParameter("id", id)
     .executeUpdate();
     }
