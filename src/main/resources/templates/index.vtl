@@ -1,0 +1,25 @@
+<h1>Trivassis Hair Salon</h1>
+
+#if($stylists.size() > 0)
+  <h2>Stylists</h2>
+  <ul>
+    #foreach($stylist in $stylists)
+      <li><a href="/stylist/$stylist.getId()/clients">$stylist.getName()</a></li>
+    #end
+  </ul>
+#end
+
+<h2>New Stylist:</h2>
+<form action="/stylists/new" method="post">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" name="name" placeholder="Name" class="form-control">
+    <label for="age">Age</label>
+    <input type="number" name="age" placeholder="Age" class="form-control">
+    <label for="name">Email:</label>
+    <input type="text" name="email" placeholder="Email" class="form-control">
+    <label for="name">Phone:</label>
+    <input type="text" name="phone" placeholder="Phone" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success">Add</button>
+</form>

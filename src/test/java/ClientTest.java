@@ -12,6 +12,16 @@ public class ClientTest {
     DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", null, null);
   }
 
+  @After
+   public void tearDown() {
+     try(Connection con = DB.sql2o.open()) {
+       String deleteCleintsQuery = "DELETE FROM clients *;";
+       String deleteStylistsQuery = "DELETE FROM stylists *;";
+       con.createQuery(deleteCleintsQuery).executeUpdate();
+       con.createQuery(deleteStylistsQuery).executeUpdate();
+     }
+   }
+
   @Test
   public void Client_instantiatesCorrectly_true() {
     Date testDate = Date.valueOf("2016-08-01");
@@ -72,13 +82,64 @@ public class ClientTest {
     assertEquals(true, Client.all().get(1).equals(secondClient));
   }
 
-  // @Test
-  // public void getId_returnsId_true() {
-  //   Date testDate = Date.valueOf("2016-08-01");
-  //   Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
-  //   myClient.save();
-  //   assertTrue(myClient.getId() > 0);
-  // }
+  @Test
+  public void clear_emptiesAllClientsFromArrayList_0() {
+    Date testDate = Date.valueOf("2016-08-01");
+    Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);    assertEquals(Client.all().size(), 0);
+  }
+
+  @Test
+  public void getId_returnsId_true() {
+    Date testDate = Date.valueOf("2016-08-01");
+    Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    myClient.save();
+    assertTrue(myClient.getId() > 0);
+  }
+
+  @Test
+  public void find_returnsClientWithSameId_secondClient() {
+    Date testDate = Date.valueOf("2016-08-01");
+    Client firstClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    firstClient.save();
+    Client secondClient = new Client("Joe", 39, "joe@gmail.com", "123-456-6534", testDate, 2);
+    secondClient.save();
+    assertEquals(Client.find(secondClient.getId()), secondClient);
+  }
+
+  @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Date testDate = Date.valueOf("2016-08-01");
+    Client firstClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    Client secondClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    assertTrue(firstClient.equals(secondClient));
+  }
+
+  @Test
+  public void save_returnsTrueIfNamesAretheSame() {
+    Date testDate = Date.valueOf("2016-08-01");
+    Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    myClient.save();
+    assertTrue(Client.all().get(0).equals(myClient));
+  }
+
+  @Test
+  public void update_updateClientName_true() {
+    Date testDate = Date.valueOf("2016-08-01");
+    Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    myClient.save();
+    myClient.updateName("Ron");
+    assertEquals("Ron", Client.find(myClient.getId()).getName());
+  }
+
+  @Test
+  public void delete_deletesClient_true() {
+    Date testDate = Date.valueOf("2016-08-01");
+    Client myClient = new Client("Dan", 38, "dan@gmail.com", "123-456-6534", testDate, 1);
+    myClient.save();
+    int myClientId = myClient.getId();
+    myClient.delete();
+    assertEquals(null, Client.find(myClientId));
+  }
 
 
 }

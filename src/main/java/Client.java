@@ -53,24 +53,25 @@ public class Client {
   try(Connection con = DB.sql2o.open()) {
     String sql = "SELECT * FROM clients";
     return con.createQuery(sql).executeAndFetch(Client.class);
+    }
   }
-}
 
-@Override
-public boolean equals(Object otherClient){
-  if (!(otherClient instanceof Client)) {
-    return false;
-  } else {
-    Client newClient = (Client) otherClient;
-    return this.getName().equals(newClient.getName()) &&
-           this.getAge() == newClient.getAge() &&
-           this.getEmail().equals(newClient.getEmail()) &&
-           this.getPhone().equals(newClient.getPhone()) &&
-           this.getId() == newClient.getId() &&
-           this.getAppointment().equals(newClient.getAppointment()) &&
-           this.getStylistId() == newClient.getStylistId();
+  @Override
+  public boolean equals(Object otherClient){
+    if (!(otherClient instanceof Client)) {
+      return false;
+    } else {
+      Client newClient = (Client) otherClient;
+      return this.getName().equals(newClient.getName()) &&
+             this.getAge() == newClient.getAge() &&
+             this.getEmail().equals(newClient.getEmail()) &&
+             this.getPhone().equals(newClient.getPhone()) &&
+             this.getId() == newClient.getId() &&
+             this.getAppointment().equals(newClient.getAppointment()) &&
+             this.getStylistId() == newClient.getStylistId();
+    }
   }
-}
+
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO clients (name, age, email, phone, appointment, stylistid) VALUES (:name, :age, :email, :phone, :appointment, :stylistid)";
@@ -85,5 +86,76 @@ public boolean equals(Object otherClient){
         .getKey();
     }
   }
+
+  public static Client find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+    String sql = "SELECT * FROM clients where id=:id";
+    Client client = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Client.class);
+    return client;
+    }
+  }
+
+  public void updateName(String name) {
+   try(Connection con = DB.sql2o.open()) {
+   String sql = "UPDATE clients SET name = :name WHERE id = :id";
+   con.createQuery(sql)
+     .addParameter("name", name)
+     .addParameter("id", id)
+     .executeUpdate();
+   }
+ }
+
+ public void updateAge(int age) {
+  try(Connection con = DB.sql2o.open()) {
+  String sql = "UPDATE clients SET age = :age WHERE id = :id";
+  con.createQuery(sql)
+    .addParameter("age", name)
+    .addParameter("id", id)
+    .executeUpdate();
+    }
+  }
+
+   public void updateEmail(String email) {
+    try(Connection con = DB.sql2o.open()) {
+    String sql = "UPDATE clients SET email = :email WHERE id = :id";
+    con.createQuery(sql)
+      .addParameter("email", email)
+      .addParameter("id", id)
+      .executeUpdate();
+      }
+    }
+
+  public void updatePhone(String phone) {
+    try(Connection con = DB.sql2o.open()) {
+    String sql = "UPDATE clients SET phone = :phone WHERE id = :id";
+    con.createQuery(sql)
+    .addParameter("phone", phone)
+    .addParameter("id", id)
+    .executeUpdate();
+    }
+  }
+
+  // public void updateAppointment(Date appointment) {
+  //   try(Connection con = DB.sql2o.open()) {
+  //   String sql = "UPDATE clients SET appointment = :appointment WHERE id = :id";
+  //   con.createQuery(sql)
+  //   .addParameter("appointment", appointment)
+  //   .addParameter("id", id)
+  //   .executeUpdate();
+  //   }
+  // }
+
+
+ public void delete() {
+   try(Connection con = DB.sql2o.open()) {
+   String sql = "DELETE FROM clients WHERE id = :id;";
+   con.createQuery(sql)
+     .addParameter("id", id)
+     .executeUpdate();
+   }
+ }
+
 
 }
