@@ -8,22 +8,17 @@ body {
 
 h1, h3 {
   text-align: center;
-  color: white;
+  /*color: white;*/
   font-family: 'Josefin Slab', serif;
 }
 
 .container{
-  color: white;
+  /*color: white;*/
 }
 
 legend {
-  color: white;
+  /*color: white;*/
   text-align: center;
   font-weight: bolder;
   font-size: 25px;
-}
-
-.topping-option {
-  /*how to space checkboxes???*/
-text-align: center;
 }
