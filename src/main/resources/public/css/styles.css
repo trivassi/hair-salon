@@ -1,0 +1,29 @@
+body {
+  background: url(../img/background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+  width: 100;
+  font-family: 'Josefin Slab', serif;
+}
+
+h1, h3 {
+  text-align: center;
+  color: white;
+  font-family: 'Josefin Slab', serif;
+}
+
+.container{
+  color: white;
+}
+
+legend {
+  color: white;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+.topping-option {
+  /*how to space checkboxes???*/
+text-align: center;
+}
