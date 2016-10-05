@@ -1,4 +1,4 @@
-# _Dictionary-Java Application_
+# _Hair-Salon Application_
 
 #### _Lets users add clients to stylists of the hair salon._
 
